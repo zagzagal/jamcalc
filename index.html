@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<title>Jam Calculator</title>
-	<link rel="stylesheet" href="css/simple.min.css">
-	<!--[if IE]>
+    <meta charset="utf-8">
+    <title>Jam Calculator</title>
+    <link rel="stylesheet" href="css/chota.min.css">
+    <!--[if IE]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
     <style>
-        h1, h3, h4 {
-              text-align: center;
-        }
-        section {
-                padding: 5px;
-                  background: #fff;
-        border-radius: 2px;
-        display: inline-block;
-        margin: 1rem;
-        position: relative;
-                  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-        }
         button {
-                width: 75%;
+            width: 75%;
         }
+
         input {
             width: 100%;
         }
+
         .center {
-                text-align: center;
+            text-align: center;
         }
-      
+
+        .logo {
+            flex: 1;
+            flex-direction: column;
+        }
     </style>
 </head>
 
@@ -53,14 +48,14 @@
             if (a >= cup) {
                 var cups;
                 var f;
-                
+
                 cups = (a - (a % cup)) / cup;
                 f = factCup(a);
-            
-                return `${cups} ${f} cups`; 
+
+                return `${cups} ${f} cups`;
             }
 
-            if (a >= cup/4) {
+            if (a >= cup / 4) {
                 var f = factCup(a);
                 return `${f} cup`;
             }
@@ -77,19 +72,19 @@
         }
 
         function factCup(a) {
-            switch(Math.trunc(a)%cup) {
-                    case 7:
-                    case 6:
-                        return "3/4";
-                    case 5:
-                    case 4:
-                        return "1/2";
-                    case 3:
-                    case 2: 
-                        return "1/4";
-                    default: 
-                        return "";
-                }
+            switch (Math.trunc(a) % cup) {
+                case 7:
+                case 6:
+                    return "3/4";
+                case 5:
+                case 4:
+                    return "1/2";
+                case 3:
+                case 2:
+                    return "1/4";
+                default:
+                    return "";
+            }
         }
 
         function calculate() {
@@ -97,49 +92,59 @@
             var n = tf / fruit;
             console.log(`Multipler: ${n}`);
             document.getElementById("outputJuice").value = normalizeOz(n * lemon);
-            console.log(`lemon ${n*lemon}`);
+            console.log(`lemon ${n * lemon}`);
             document.getElementById("outputPectin").value = normalizeOz(n * pecktin);
-            console.log(`pectin ${n*pecktin}`);
+            console.log(`pectin ${n * pecktin}`);
             document.getElementById("outputSugar").value = normalizeOz(n * sugar);
-            console.log(`sugar ${n*sugar}`);  
+            console.log(`sugar ${n * sugar}`);
         }
     </script>
-	<header>
-        <h1>Jam Calculator</h1>
-        <p>A very simple ingrediant Calculator</p>
+
+
+    <header>
+        <div class="logo is-center">
+            <h1>Jam Calculator</h3>
+                <small><em>A very simple ingrediant Calculator</em></small>
+        </div>
+        <nav class="tabs is-center">
+            <a href="#calc">Calculator</a>
+            <a href="#info">Info</a>
+        </nav>
+
     </header>
 
-    
-        <section>
-            <div>
-                <label for="totalFruit">Total Prepped Fruit</label><br>
-                <input id="totalFruit" type="number" placeholder="in Cups" autofocus>
-            </div>
-    
-            <div>
-                <label for="outputJuice">Juice: <em>(For Blueberries, Peaches, and Sweet Cherries)</em></label><br>
-                <input id="outputJuice" readonly type="text" tabindex="-1"></input>
-            </div>
-    
-            <div>
-                <label for="outputPectin">Pectin</label><br>
-                <input id="outputPectin" readonly type="text" tabindex="-1"></input>
-            </div>
+    <section class="card" id="calc">
+        <div>
+            <label for="totalFruit">Total Prepped Fruit</label><br>
+            <input id="totalFruit" type="number" placeholder="in Cups" autofocus>
+        </div>
 
-            <div>
+        <div>
+            <label for="outputJuice">Juice: <em>(For Blueberries, Peaches, and Sweet Cherries)</em></label><br>
+            <input id="outputJuice" readonly type="text" tabindex="-1"></input>
+        </div>
+
+        <div>
+            <label for="outputPectin">Pectin</label><br>
+            <input id="outputPectin" readonly type="text" tabindex="-1"></input>
+        </div>
+
+        <div>
             <label for="outputSugar">Granulated Sugar:</label><br>
             <input id="outputSugar" readonly type="text" tabindex="-1"></input>
-            </div>
-        
-            <div class="center">
-            <button onClick="calculate()">Calculate</button>
-            </div>
-        </section>
+        </div>
 
-        <article>
-            <h2>Why Jam calc?</h2>
+        <div class="center">
+            <button onClick="calculate()" class="button primary">Calculate</button>
+        </div>
+    </section>
 
-            <p>Afer doing a mass amount of jam using the recipe from Ball Pectin I needed a Calculator for all the ingrediants</p>
-        </article>
+    <article id="info">
+        <h2>Why Jam calc?</h2>
+
+        <p>Afer doing a mass amount of jam using the recipe from Ball Pectin I needed a Calculator for all the
+            ingrediants</p>
+    </article>
 </body>
+
 </html>
